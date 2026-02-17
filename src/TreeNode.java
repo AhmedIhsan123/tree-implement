@@ -1,15 +1,15 @@
-public class TreeNode {
+public class TreeNode<T> {
     // -- Instance fields --
 
     // The value of the node
-    public int value;
+    public T value;
 
     // Left and right pointers
-    public TreeNode left;
-    public TreeNode right;
+    public TreeNode<T> left;
+    public TreeNode<T> right;
 
     // -- Contructors --
-    public TreeNode(int value, TreeNode left, TreeNode right) {
+    public TreeNode(T value, TreeNode<T> left, TreeNode<T> right) {
         this.value = value;
         this.left = left;
         this.right = right;
