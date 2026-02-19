@@ -1,3 +1,4 @@
+import java.util.*;
 public class Traversal {
   public static void main(String[] args) {
     TreeNode<Integer> root = new TreeNode<Integer>(10, new TreeNode<Integer>(9, new TreeNode<Integer>(5, null, null), new TreeNode<Integer>(2, null, null)), new TreeNode<Integer>(15, new TreeNode<Integer>(-3, null, null), new TreeNode<Integer>(5, null, new TreeNode<Integer>(22, null, null))));
@@ -9,7 +10,7 @@ public class Traversal {
     inorder(root);
     System.out.println();
 
-    TreeNode<String> stringRoot = new TreeNode<String>("Hello", new TreeNode<String>("how", new TreeNode<String>("are", null, null), new TreeNode<String>("you", null, null)), new TreeNode<String>("I", new TreeNode<String>("am", null, null), new TreeNode<String>("so", null, new TreeNode<String>("good", null, null))));
+    TreeNode<String> stringRoot = new TreeNode<String>("Hello", new TreeNode<String>("Hello", new TreeNode<String>("am", null, null), new TreeNode<String>("am", null, null)), new TreeNode<String>("I", new TreeNode<String>("am", null, null), new TreeNode<String>("so", null, new TreeNode<String>("good", null, null))));
 
     preorder(stringRoot);
     System.out.println();
@@ -22,6 +23,23 @@ public class Traversal {
     System.out.println();
 
     System.out.println(countNodes(root));
+    System.out.println(toMap(stringRoot));
+    
+  }
+  
+  public static <T> Map<T, Integer> toMap(TreeNode<T> node) {
+    Map<T, Integer> counts = new HashMap<>();
+    toMap(node, counts);
+    return counts;
+  }
+  
+  private static <T> void toMap(TreeNode<T> node, Map<T, Integer> counts) {
+    if (node == null) {
+      return;
+    }
+    counts.put(node.value, counts.getOrDefault(node.value, 0) + 1);
+    toMap(node.left, counts);
+    toMap(node.right, counts);
   }
 
   public static int countNodes(TreeNode<?> node) {
